@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RankHorasCertificados.Data;
 
@@ -11,9 +12,10 @@ using RankHorasCertificados.Data;
 namespace RankHorasCertificados.Migrations
 {
     [DbContext(typeof(RankHorasCertificadosContext))]
-    partial class RankHorasCertificadosContextModelSnapshot : ModelSnapshot
+    [Migration("20240521130357_UsuarioCursos")]
+    partial class UsuarioCursos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

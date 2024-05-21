@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 namespace RankHorasCertificados.Models
 {
      [Table("Curso")]
-    public class Curso
+    public class CursoModel
     {
         [Key]
         public Guid Id { get; set; }
-        public string Name { get; set; }
+        public string Nome { get; set; }
         public bool Externo { get; set; }
         public bool Interno { get; set; }
         public int Duracao { get; set;}
         public Guid UsuarioId{ get; set; }
-        public virtual UsuarioModel UsuarioModel { get; set; }
+        public UsuarioModel UsuarioModel { get; set; }
     }
 }

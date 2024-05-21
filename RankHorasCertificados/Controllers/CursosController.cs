@@ -10,11 +10,11 @@ using RankHorasCertificados.Models;
 
 namespace RankHorasCertificados.Controllers
 {
-    public class CursoesController : Controller
+    public class CursosController : Controller
     {
         private readonly RankHorasCertificadosContext _context;
 
-        public CursoesController(RankHorasCertificadosContext context)
+        public CursosController(RankHorasCertificadosContext context)
         {
             _context = context;
         }
@@ -36,7 +36,7 @@ namespace RankHorasCertificados.Controllers
             }
 
             var curso = await _context.Curso
-                .FirstOrDefaultAsync(m => m.Name == id);
+                .FirstOrDefaultAsync(m => m.Nome == id);
             if (curso == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace RankHorasCertificados.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Externo,Interno")] Curso curso)
+        public async Task<IActionResult> Create([Bind("Name,Externo,Interno")] CursoModel curso)
         {
             if (ModelState.IsValid)
             {
@@ -88,9 +88,9 @@ namespace RankHorasCertificados.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Name,Externo,Interno")] Curso curso)
+        public async Task<IActionResult> Edit(string id, [Bind("Name,Externo,Interno")] CursoModel curso)
         {
-            if (id != curso.Name)
+            if (id != curso.Nome)
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace RankHorasCertificados.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CursoExists(curso.Name))
+                    if (!CursoExists(curso.Nome))
                     {
                         return NotFound();
                     }
@@ -127,7 +127,7 @@ namespace RankHorasCertificados.Controllers
             }
 
             var curso = await _context.Curso
-                .FirstOrDefaultAsync(m => m.Name == id);
+                .FirstOrDefaultAsync(m => m.Nome == id);
             if (curso == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace RankHorasCertificados.Controllers
 
         private bool CursoExists(string id)
         {
-          return (_context.Curso?.Any(e => e.Name == id)).GetValueOrDefault();
+          return (_context.Curso?.Any(e => e.Nome == id)).GetValueOrDefault();
         }
     }
 }

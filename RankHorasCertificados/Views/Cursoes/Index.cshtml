@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RankHorasCertificados.Models.Curso>
+﻿@model IEnumerable<RankHorasCertificados.Models.CursoModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Interno)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Name">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Name">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Name">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Nome">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Nome">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Nome">Delete</a>
             </td>
         </tr>
 }
