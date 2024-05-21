@@ -27,7 +27,6 @@ namespace RankHorasCertificados.Controllers
                           Problem("Entity set 'RankHorasCertificadosContext.Curso'  is null.");
         }
 
-        // GET: Cursoes/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null || _context.Curso == null)
@@ -45,18 +44,16 @@ namespace RankHorasCertificados.Controllers
             return View(curso);
         }
 
-        // GET: Cursoes/Create
         public IActionResult Create()
         {
+            var listaUsuarios = _context.UsuarioModel.ToList();
+            ViewBag.listaDeUsuarios = new SelectList(listaUsuarios, "Id", "Nome");
             return View();
         }
 
-        // POST: Cursoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Externo,Interno")] CursoModel curso)
+        public async Task<IActionResult> Create(CursoModel curso)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +64,6 @@ namespace RankHorasCertificados.Controllers
             return View(curso);
         }
 
-        // GET: Cursoes/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null || _context.Curso == null)
@@ -83,12 +79,9 @@ namespace RankHorasCertificados.Controllers
             return View(curso);
         }
 
-        // POST: Cursoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Name,Externo,Interno")] CursoModel curso)
+        public async Task<IActionResult> Edit(string id, [Bind("Nome,Externo,Interno")] CursoModel curso)
         {
             if (id != curso.Nome)
             {
@@ -118,7 +111,6 @@ namespace RankHorasCertificados.Controllers
             return View(curso);
         }
 
-        // GET: Cursoes/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null || _context.Curso == null)
@@ -136,7 +128,6 @@ namespace RankHorasCertificados.Controllers
             return View(curso);
         }
 
-        // POST: Cursoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

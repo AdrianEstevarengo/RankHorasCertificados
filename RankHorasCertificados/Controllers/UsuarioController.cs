@@ -22,7 +22,8 @@ namespace RankHorasCertificados.Controllers
         // GET: UsuarioModels
         public async Task<IActionResult> Index()
         {
-              return _context.UsuarioModel != null ? 
+            var usuarios = await _context.UsuarioModel.Include(u => u.Cursos).ToListAsync();
+            return _context.UsuarioModel != null ?
                           View(await _context.UsuarioModel.ToListAsync()) :
                           Problem("Entity set 'RankHorasCertificadosContext.UsuarioModel'  is null.");
         }
@@ -51,12 +52,9 @@ namespace RankHorasCertificados.Controllers
             return View();
         }
 
-        // POST: UsuarioModels/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Matricula,Name,Setor,Curso")] UsuarioModel usuarioModel)
+        public async Task<IActionResult> Create(UsuarioModel usuarioModel)
         {
             if (ModelState.IsValid)
             {
@@ -68,14 +66,17 @@ namespace RankHorasCertificados.Controllers
         }
 
         // GET: UsuarioModels/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? Id)
         {
-            if (id == null || _context.UsuarioModel == null)
+            
+            if (Id == null || _context.UsuarioModel == null)
             {
                 return NotFound();
             }
+           // var usuarioModel = await _context.UsuarioModel.FindAsync(Id);
+            var usuarioModel = await _context.UsuarioModel
+               .FirstOrDefaultAsync(m => m.Matricula == Id);
 
-            var usuarioModel = await _context.UsuarioModel.FindAsync(id);
             if (usuarioModel == null)
             {
                 return NotFound();
@@ -83,12 +84,9 @@ namespace RankHorasCertificados.Controllers
             return View(usuarioModel);
         }
 
-        // POST: UsuarioModels/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Matricula,Name,Setor,Curso")] UsuarioModel usuarioModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Matricula,Nome,Setor,Curso")] UsuarioModel usuarioModel)
         {
             if (id != usuarioModel.Matricula)
             {
@@ -150,14 +148,14 @@ namespace RankHorasCertificados.Controllers
             {
                 _context.UsuarioModel.Remove(usuarioModel);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UsuarioModelExists(int id)
         {
-          return (_context.UsuarioModel?.Any(e => e.Matricula == id)).GetValueOrDefault();
+            return (_context.UsuarioModel?.Any(e => e.Matricula == id)).GetValueOrDefault();
         }
     }
 }

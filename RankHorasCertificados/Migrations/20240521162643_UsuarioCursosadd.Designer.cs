@@ -12,8 +12,8 @@ using RankHorasCertificados.Data;
 namespace RankHorasCertificados.Migrations
 {
     [DbContext(typeof(RankHorasCertificadosContext))]
-    [Migration("20240521130357_UsuarioCursos")]
-    partial class UsuarioCursos
+    [Migration("20240521162643_UsuarioCursosadd")]
+    partial class UsuarioCursosadd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

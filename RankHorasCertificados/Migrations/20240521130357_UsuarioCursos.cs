@@ -15,7 +15,7 @@ namespace RankHorasCertificados.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Matricula = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Setor = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
