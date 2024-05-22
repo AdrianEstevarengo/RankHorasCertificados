@@ -27,7 +27,7 @@ namespace RankHorasCertificados.Controllers
                           Problem("Entity set 'RankHorasCertificadosContext.Curso'  is null.");
         }
 
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null || _context.Curso == null)
             {
@@ -35,7 +35,7 @@ namespace RankHorasCertificados.Controllers
             }
 
             var curso = await _context.Curso
-                .FirstOrDefaultAsync(m => m.Nome == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (curso == null)
             {
                 return NotFound();
@@ -64,7 +64,7 @@ namespace RankHorasCertificados.Controllers
             return View(curso);
         }
 
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Curso == null)
             {
@@ -81,9 +81,9 @@ namespace RankHorasCertificados.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Nome,Externo,Interno")] CursoModel curso)
+        public async Task<IActionResult> Edit(Guid? id, CursoModel curso)
         {
-            if (id != curso.Nome)
+            if (id != curso.Id)
             {
                 return NotFound();
             }
@@ -111,7 +111,7 @@ namespace RankHorasCertificados.Controllers
             return View(curso);
         }
 
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Curso == null)
             {
@@ -119,7 +119,7 @@ namespace RankHorasCertificados.Controllers
             }
 
             var curso = await _context.Curso
-                .FirstOrDefaultAsync(m => m.Nome == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (curso == null)
             {
                 return NotFound();
@@ -130,7 +130,7 @@ namespace RankHorasCertificados.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(Guid? id)
         {
             if (_context.Curso == null)
             {

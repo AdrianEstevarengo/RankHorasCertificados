@@ -60,7 +60,7 @@ namespace RankHorasCertificados.Migrations
                     b.Property<int>("Matricula")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

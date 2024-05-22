@@ -1,8 +1,41 @@
-﻿@{
+﻿@model IEnumerable<RankHorasCertificados.Models.UsuarioModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Matricula</th>
+            <th>Setor</th>
+            <th>Carga Horaria</th>
+            <th>
+                <a class="nav-link text-dark btn btn-primary btn-sm" type="button" asp-area="" asp-controller="Usuario" asp-action="Index">Adicionar Usuario</a>
+                <a class="nav-link text-dark btn btn-primary btn-sm" type="button" asp-area="" asp-controller="Cursos" asp-action="Index">Adicionar Curso</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr data-ng-repeat="pdiskmovie in people | filter: table">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Matricula)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Setor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CargaHoraria)
+                </td>
+                <td>
+                    <a class="nav-link text-dark btn btn-primary btn-sm" asp-controller="Usuario" type="button" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

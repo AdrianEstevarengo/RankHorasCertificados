@@ -21,6 +21,7 @@ namespace RankHorasCertificados.Models
         [Required]
         public string Setor { get; set; }
         public virtual List<CursoModel> Cursos { get; set; }
-        public int CargaHoraria => Cursos.Sum(c => c.Duracao);
+       
+        public int? CargaHoraria => Cursos.Sum(c => c.Duracao);
     }
 }

@@ -29,7 +29,7 @@ namespace RankHorasCertificados.Controllers
         }
 
         // GET: UsuarioModels/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.UsuarioModel == null)
             {
@@ -37,7 +37,7 @@ namespace RankHorasCertificados.Controllers
             }
 
             var usuarioModel = await _context.UsuarioModel
-                .FirstOrDefaultAsync(m => m.Matricula == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (usuarioModel == null)
             {
                 return NotFound();
@@ -66,7 +66,7 @@ namespace RankHorasCertificados.Controllers
         }
 
         // GET: UsuarioModels/Edit/5
-        public async Task<IActionResult> Edit(int? Id)
+        public async Task<IActionResult> Edit(Guid? Id)
         {
             
             if (Id == null || _context.UsuarioModel == null)
@@ -75,7 +75,7 @@ namespace RankHorasCertificados.Controllers
             }
            // var usuarioModel = await _context.UsuarioModel.FindAsync(Id);
             var usuarioModel = await _context.UsuarioModel
-               .FirstOrDefaultAsync(m => m.Matricula == Id);
+               .FirstOrDefaultAsync(m => m.Id == Id);
 
             if (usuarioModel == null)
             {
@@ -86,9 +86,9 @@ namespace RankHorasCertificados.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Matricula,Nome,Setor,Curso")] UsuarioModel usuarioModel)
+        public async Task<IActionResult> Edit(Guid id, UsuarioModel usuarioModel)
         {
-            if (id != usuarioModel.Matricula)
+            if (id != usuarioModel.Id)
             {
                 return NotFound();
             }
@@ -117,7 +117,7 @@ namespace RankHorasCertificados.Controllers
         }
 
         // GET: UsuarioModels/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.UsuarioModel == null)
             {
@@ -125,7 +125,7 @@ namespace RankHorasCertificados.Controllers
             }
 
             var usuarioModel = await _context.UsuarioModel
-                .FirstOrDefaultAsync(m => m.Matricula == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (usuarioModel == null)
             {
                 return NotFound();
@@ -137,7 +137,7 @@ namespace RankHorasCertificados.Controllers
         // POST: UsuarioModels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.UsuarioModel == null)
             {

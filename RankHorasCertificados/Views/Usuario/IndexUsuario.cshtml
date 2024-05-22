@@ -1,0 +1,45 @@
+﻿@model IEnumerable<RankHorasCertificados.Models.UsuarioModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Adicione Um Usuario</h1>
+
+<p>
+    <a asp-action="Create">Adicionar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Setor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CargaHoraria)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Setor)
+            </td><td>
+                @Html.DisplayFor(modelItem => item.CargaHoraria)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Matricula">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Matricula">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Matricula">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

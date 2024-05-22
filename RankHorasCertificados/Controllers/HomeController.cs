@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using RankHorasCertificados.Data;
 using RankHorasCertificados.Models;
 using System.Diagnostics;
 
@@ -7,15 +9,18 @@ namespace RankHorasCertificados.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly RankHorasCertificadosContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, RankHorasCertificadosContext context)
         {
+            _context = context;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var usuarios = await _context.UsuarioModel.Include(u => u.Cursos).ToListAsync();
+            return View(usuarios);
         }
 
         public IActionResult Privacy()
