@@ -5,15 +5,16 @@
 }
 <table>
     <thead>
+        <div class="add-açoes">
+            <a class="nav-link text-dark btn btn-primary btn-sm botoes" type="button" asp-area="" asp-controller="Usuario" asp-action="Create">Adicionar Usuario</a>
+            <a class="nav-link text-dark btn btn-primary btn-sm botoes" type="button" asp-area="" asp-controller="Cursos" asp-action="Create">Adicionar Curso</a>
+        </div>
         <tr>
             <th>Nome</th>
             <th>Matricula</th>
             <th>Setor</th>
             <th>Carga Horaria</th>
-            <th>
-                <a class="nav-link text-dark btn btn-primary btn-sm" type="button" asp-area="" asp-controller="Usuario" asp-action="Index">Adicionar Usuario</a>
-                <a class="nav-link text-dark btn btn-primary btn-sm" type="button" asp-area="" asp-controller="Cursos" asp-action="Index">Adicionar Curso</a>
-            </th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>

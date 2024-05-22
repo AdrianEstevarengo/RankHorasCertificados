@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using RankHorasCertificados.Enum;
 
 namespace RankHorasCertificados.Models
 {
@@ -12,7 +13,8 @@ namespace RankHorasCertificados.Models
         }
         [Key]
         public Guid Id { get; set; }
-        public string Nome { get; set; }
+        public string Nome { get; set; } 
+        public ESetor? Setor { get; set; }
         public bool Externo { get; set; }
         public bool Interno { get; set; }
         public int Duracao { get; set;}

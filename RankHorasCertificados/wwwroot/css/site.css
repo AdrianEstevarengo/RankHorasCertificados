@@ -123,3 +123,7 @@ table th {
     table th.last {
         border-right: none;
     }
+.add-açoes{
+    display:flex;
+    gap:15px;
+}
